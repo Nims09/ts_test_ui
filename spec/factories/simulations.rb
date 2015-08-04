@@ -12,15 +12,9 @@
 
 FactoryGirl.define do 
 	factory :simulation do |f|
-		f.id 1
+		f.id (Simulation.last.nil? ? 1 : Simulation.last.id + 1)
 		f.x_size 3
 		f.y_size 3
-		f.verdict "push"
-		f.arrangement [
-			["hard", "none", "none"],
-			["none", "none", "none"],
-			["none", "none", "soft"],
-		]
 		f.user_id 1
 	end 
 end 
