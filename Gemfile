@@ -1,5 +1,5 @@
 source 'https://rubygems.org'
-ruby '2.1.4'
+ruby '2.2.2'
 
 # Standard Rails gems
 gem 'rails', '4.2.1'
@@ -35,13 +35,14 @@ group :development, :test do
 
   # Annotate_Models: https://github.com/ctran/annotate_models
   gem 'annotate', '2.6.8'
-
 end
 
 
 # SQLite 3
 group :development, :test do
   gem 'sqlite3', '1.3.10'
+  gem 'rspec-rails', '~> 3.0'
+  gem 'factory_girl_rails'  
 end
 
 # Devise: https://github.com/plataformatec/devise
