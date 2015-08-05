@@ -7,35 +7,39 @@ describe SimulationsController, :type => :controller do
 	end
 
 	before(:each) do
+		@simulation = FactoryGirl.build(:simulation, user: user)
+		@simulation.save!
 		sign_in user	
 	end
 
 	describe "GET #index" do 
-		it "populates an array of simulations" do 
-			simulation = FactoryGirl.build(:simulation, user: user)
-			simulation.save!
 
+		it "should return response OK" do 
 			get :index
 
 			expect(response).to be_success
 		end
 
 		it "returns the correct number of simulations" do 
-			simulation = FactoryGirl.build(:simulation, user: user)
-			simulation.save!
+			get :index
 
-			get :index, id: user.id
-
-			expect(assigns(:simulations).size).to eq 1
+			expect(assigns(:simulations)).to eq [@simulation]
 		end
-
-		# it "populates an array of the current users simulations"
-		# it "renders the :index view"
 	end
 
-	# context "GET #show" do
-	# 	# it "assigns the requested contact to @contact" do 
+	describe "GET #show" do
 
-	# 	# end
-	# end	
+		it "should return response OK" do 
+			get :show, id: @simulation.id
+
+			expect(response).to be_success
+		end 
+
+		it "should return the correct record" do
+			get :show, id: @simulation.id
+
+			expect(assigns(:simulation)).to eq @simulation
+		end
+
+	end
 end
