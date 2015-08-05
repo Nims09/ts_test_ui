@@ -1,6 +1,41 @@
 <h1>New Simulation</h1>
 
 <ol>
-  <li> This should allow for a user to specify the dimensions of the seating arrangement </li>
+	<li> Please specify dimensions for your new arrangment </li>
+	<%= form_for(@simulation, html: {class: 'form-horizontal'}) do |f| %>
+		<% if @simulation.errors.any? %>
+			<div id="error_explanation">
+				<h2><%= pluralize(@simulation.errors.count, "error") %> prohibited this todo from being saved:</h2>
+
+				<ul>
+					<% @simulation.errors.full_messages.each do |message| %>
+						<li><%= message %></li>
+					<% end %>
+				</ul>
+			</div>
+		<% end %>
+
+		<div class="field form-group">
+			<%= f.label :x_size, class: 'col-sm-2 control-label' %>
+			<div class="col-sm-2">
+				<%= f.text_field :x_size, class: 'form-control' %>
+			</div>
+		</div>
+		<div class="field form-group">
+			<%= f.label :y_size, class: 'col-sm-2 control-label' %>
+			<div class="col-sm-2">
+				<%= f.text_field :y_size, class: 'form-control' %>
+			</div>
+		</div>
+			<div class="actions form-group">
+			<div class="col-sm-offset-2 col-sm-2">
+				<%= f.submit 'Submit', :class => 'btn btn-primary' %>
+			</div>
+		</div>
+	<% end %>
 </ol>
+
+
+
+
 <%= link_to 'Back', simulations_path %>
