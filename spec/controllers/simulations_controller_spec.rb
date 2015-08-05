@@ -56,4 +56,13 @@ describe SimulationsController, :type => :controller do
 			expect(assigns(:simulation).user_id).to eq user.id
 		end
 	end
+
+	describe "POST #create" do 
+
+		it "creates a simulation" do 
+			simulation_params = FactoryGirl.attributes_for(:simulation)
+
+			expect { post :create, :simulation => simulation_params }.to change(Simulation, :count).by(1)
+		end
+	end
 end
