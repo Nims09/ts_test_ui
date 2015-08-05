@@ -25,9 +25,15 @@ RSpec.configure do |config|
   # Deals with being unable to find 'get' function
   require 'rspec/rails'
 
+  # For finding factories
+  config.include FactoryGirl::Syntax::Methods
+
+  # Packages each test within a single transaction
+  config.use_transactional_fixtures = true
+
   # To deal with Devise
   config.include Devise::TestHelpers, type: :controller
-  config.extend ControllerMacros, :type => :controller
+  # config.extend ControllerMacros, :type => :controller
 
   # Forces only 'expect' Syntax
   config.expect_with :rspec do |c|

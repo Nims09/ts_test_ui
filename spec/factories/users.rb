@@ -1,8 +1,6 @@
 FactoryGirl.define do
-	factory :account do
-		email "fake@fake.com"
+	factory :user do
+		email "user_#{User.last.nil? ? 1 : User.last.id + 1}@home.com"
 		password "password"
-		password_confirmation "password"
-		confirmed_at Date.today
 	end
 end
