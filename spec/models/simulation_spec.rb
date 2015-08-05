@@ -15,23 +15,23 @@ describe Simulation do
 
 	context "validates" do
 		it "has a valid factory" do 
-			FactoryGirl.create(:simulation).should be_valid
+			expect(FactoryGirl.create(:simulation)).to be_valid
 		end
 
 		it "is invalid without a x_size" do 
-			FactoryGirl.build(:simulation, x_size: nil).should_not be_valid
+			expect(FactoryGirl.build(:simulation, x_size: nil)).not_to be_valid
 		end
 
 		it "is invalid without a y_size" do 
-			FactoryGirl.build(:simulation, y_size: nil).should_not be_valid
+			expect(FactoryGirl.build(:simulation, y_size: nil)).not_to be_valid
 		end
 
 		it "is invalid with a x_size less than zero" do 
-			FactoryGirl.build(:simulation, x_size: -1).should_not be_valid
+			expect(FactoryGirl.build(:simulation, x_size: -1)).not_to be_valid
 		end
 	
 		it "is invalid with a x_size less than zero" do 
-			FactoryGirl.build(:simulation, y_size: -1).should_not be_valid
+			expect(FactoryGirl.build(:simulation, y_size: -1)).not_to be_valid
 		end
 	end
 end 
