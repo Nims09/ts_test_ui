@@ -40,6 +40,20 @@ describe SimulationsController, :type => :controller do
 
 			expect(assigns(:simulation)).to eq @simulation
 		end
+	end
 
+	describe "GET #new" do
+
+		it "assigns a new simulation to @simulation" do
+			get :new
+
+			expect(assigns(:simulation)).to be_a_new(Simulation)
+		end
+
+		it "assigns a new simulation to the current logged in user" do 
+			get :new
+
+			expect(assigns(:simulation).user_id).to eq user.id
+		end
 	end
 end
