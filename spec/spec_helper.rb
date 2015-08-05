@@ -28,12 +28,11 @@ RSpec.configure do |config|
   # For finding factories
   config.include FactoryGirl::Syntax::Methods
 
-  # Packages each test within a single transaction
+  # Packages each test within a single transaction, clean data each run
   config.use_transactional_fixtures = true
 
   # To deal with Devise
   config.include Devise::TestHelpers, type: :controller
-  # config.extend ControllerMacros, :type => :controller
 
   # Forces only 'expect' Syntax
   config.expect_with :rspec do |c|

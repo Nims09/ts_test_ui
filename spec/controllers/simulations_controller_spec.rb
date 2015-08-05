@@ -7,8 +7,6 @@ describe SimulationsController, :type => :controller do
 	end
 
 	before(:each) do 
-					puts user.email
-
 		sign_in user	
 	end
 
@@ -17,7 +15,6 @@ describe SimulationsController, :type => :controller do
 			simulation = FactoryGirl.build(:simulation, user_id: user.id)
 			get :index
 			expect(response).to be_success
-			puts user.email
 		end
 
 		it "returns the correct number of simulations" do 
