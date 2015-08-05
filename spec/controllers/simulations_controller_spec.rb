@@ -6,22 +6,27 @@ describe SimulationsController, :type => :controller do
 		FactoryGirl.create(:user)
 	end
 
-	before(:each) do 
+	before(:each) do
 		sign_in user	
 	end
 
 	describe "GET #index" do 
 		it "populates an array of simulations" do 
-			simulation = FactoryGirl.build(:simulation, user_id: user.id)
+			simulation = FactoryGirl.build(:simulation, user: user)
+			simulation.save!
+
 			get :index
+
 			expect(response).to be_success
 		end
 
 		it "returns the correct number of simulations" do 
-			simulation = FactoryGirl.build(:simulation, user_id: user.id)
-			get :index
-			puts assigns(:simulations)
-			# expect(response).to be_success			
+			simulation = FactoryGirl.build(:simulation, user: user)
+			simulation.save!
+
+			get :index, id: user.id
+
+			expect(assigns(:simulations).size).to eq 1
 		end
 
 		# it "populates an array of the current users simulations"
