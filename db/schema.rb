@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150807202213) do
+ActiveRecord::Schema.define(version: 20150808203237) do
 
   create_table "simulations", force: :cascade do |t|
     t.integer "x_size"
@@ -19,6 +19,7 @@ ActiveRecord::Schema.define(version: 20150807202213) do
     t.string  "arrangement"
     t.integer "user_id"
     t.string  "opinion"
+    t.string  "identifier"
   end
 
   add_index "simulations", ["user_id"], name: "index_simulations_on_user_id"

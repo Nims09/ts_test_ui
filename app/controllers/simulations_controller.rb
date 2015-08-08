@@ -33,15 +33,21 @@ class SimulationsController < ApplicationController
 	# This can be used for updating the next state transition.
 	# This action should be asynchronous
 	end
-
+	
 	def destroy
-	# This action should be asynchronous.
+		@simulation = Simulation.find(params[:id])
+		@simulation.destroy
+
+		respond_to do |format|
+			format.js
+			format.html { redirect_to(simulations_url) }
+		end		
 	end
 
 	private
 
 	def simulation_params
-		params.require(:simulation).permit(:x_size, :y_size)
+		params.require(:simulation).permit(:x_size, :y_size, :identifier)
 	end
 
 end

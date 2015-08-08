@@ -8,6 +8,7 @@
 #  arrangement :string
 #  user_id     :integer
 #  opinion     :string
+#  identifier  :string
 #
 
 class Simulation < ActiveRecord::Base
@@ -16,7 +17,7 @@ class Simulation < ActiveRecord::Base
 	serialize :arrangement, Array
 	serialize :opinion, Hash 
 
-	validates :user_id, presence: true
+	validates :user_id, :identifier, presence: true
 	validates :x_size, :y_size, presence: true, :numericality => {:only_integer => true}
 	validates_numericality_of :x_size, :y_size, :greater_than => 0
 

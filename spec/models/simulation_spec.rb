@@ -8,6 +8,7 @@
 #  arrangement :string
 #  user_id     :integer
 #  opinion     :string
+#  identifier  :string
 #
 
 require 'spec_helper'
@@ -25,6 +26,14 @@ describe Simulation do
 
 		it "is invalid without a y_size" do 
 			expect(FactoryGirl.build(:simulation, y_size: nil)).not_to be_valid
+		end
+
+		it "is invalid without an user_id" do 
+			expect(FactoryGirl.build(:simulation, user_id: nil)).not_to be_valid
+		end		
+
+		it "is invalid without an identifier" do 
+			expect(FactoryGirl.build(:simulation, identifier: nil)).not_to be_valid
 		end
 
 		it "is invalid with a x_size less than zero" do 
