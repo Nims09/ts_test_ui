@@ -11,14 +11,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150731232240) do
+ActiveRecord::Schema.define(version: 20150807202213) do
 
   create_table "simulations", force: :cascade do |t|
     t.integer "x_size"
     t.integer "y_size"
-    t.string  "verdict"
     t.string  "arrangement"
     t.integer "user_id"
+    t.string  "opinion"
   end
 
   add_index "simulations", ["user_id"], name: "index_simulations_on_user_id"

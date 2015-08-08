@@ -5,10 +5,11 @@
 #  id          :integer          not null, primary key
 #  x_size      :integer
 #  y_size      :integer
-#  verdict     :string
 #  arrangement :string
 #  user_id     :integer
+#  opinion     :string
 #
+
 require 'spec_helper'
 
 describe Simulation do 
@@ -66,5 +67,38 @@ describe "build_arrangement" do
 				end
 			end
 		end 
+	end
+
+	context "simulation.opinions" do 
+
+		before(:each) do
+			@simulation.generate_arrangement
+		end
+
+		it "fills opinions hash" do
+			expect(@simulation.opinion.nil?).to be false
+		end
+
+		it "collects the correct values" do
+			counts = Hash[ Simulation.keys.map { |key| [key, 0] } ]
+
+			@simulation.state.each do |row|
+				row.each do |item|
+					counts[item] += 1
+				end
+			end
+
+			counts.each do |count, value|
+				expect(value).to eq @simulation.opinion[count]
+			end
+		end
+	end
+
+	context "returns a verdict" do 
+
+		it "returns a verdict within the key range" do 
+			@simulation.generate_arrangement
+			expect([:hard, :soft, :push].include?(@simulation.verdict)).to be true
+		end
 	end
 end 

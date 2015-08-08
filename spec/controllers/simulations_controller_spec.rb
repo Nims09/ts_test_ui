@@ -64,5 +64,15 @@ describe SimulationsController, :type => :controller do
 
 			expect { post :create, :simulation => simulation_params }.to change(Simulation, :count).by(1)
 		end
+
+		it "should give the simulation state" do 
+			simulation_params = FactoryGirl.attributes_for(:simulation)
+
+			post :create, :simulation => simulation_params
+
+			# puts Simulation.keys
+
+			expect(Simulation.last.state.nil?).to be false
+		end
 	end
 end

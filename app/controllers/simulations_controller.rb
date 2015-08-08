@@ -14,10 +14,15 @@ class SimulationsController < ApplicationController
 
 	def create
 		@simulation = Simulation.new(simulation_params)
+		@simulation.user_id = current_user.id
 		@simulation.generate_arrangement
 
-		@simulation.save
-		redirect_to @simulation
+		if @simulation.save
+			redirect_to @simulation
+		else
+			setup_simulations
+			render :index
+		end
 	end
 
 	def show

@@ -5,9 +5,9 @@
 #  id          :integer          not null, primary key
 #  x_size      :integer
 #  y_size      :integer
-#  verdict     :string
 #  arrangement :string
 #  user_id     :integer
+#  opinion     :string
 #
 
 FactoryGirl.define do 
