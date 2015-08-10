@@ -20,6 +20,7 @@ class SimulationsController < ApplicationController
 		if @simulation.save
 			redirect_to @simulation
 		else
+			# TODO: This needs a correct response
 			setup_simulations
 			render :index
 		end
@@ -30,8 +31,18 @@ class SimulationsController < ApplicationController
 	end
 
 	def update
-	# This can be used for updating the next state transition.
-	# This action should be asynchronous
+		# This can be used for updating the next state transition.
+		# This action should be asynchronous
+		@simulation = Simulation.find(params[:id])
+		@simulation.next
+
+		@simulation.save
+
+		respond_to do |format|
+			format.js
+			format.html { redirect_to simulations_url }
+		end
+
 	end
 	
 	def destroy
@@ -40,7 +51,7 @@ class SimulationsController < ApplicationController
 
 		respond_to do |format|
 			format.js
-			format.html { redirect_to(simulations_url) }
+			format.html { redirect_to simulations_url  }
 		end		
 	end
 

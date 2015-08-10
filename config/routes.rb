@@ -5,6 +5,6 @@ ClioHiringUi::Application.routes.draw do
 
   resource :instructions, only: [:show]
 
-  resources :simulations, except: [:edit]
+  resources :simulations
 
 end

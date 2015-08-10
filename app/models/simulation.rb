@@ -63,14 +63,15 @@ class Simulation < ActiveRecord::Base
 		new_arrangement = Array.new(arrangement.size) { |array| array = Array.new(arrangement.first.size) }
 		opinion = Hash[ Simulation.keys.map { |key| [key, 0] } ]
 
-		arrangement.each_with_index do |array, y_index|
+		self.arrangement.each_with_index do |array, y_index|
 			array.each_with_index do |opinion_current, x_index|
 				new_arrangement[y_index][x_index] = update_opinion_for x_index, y_index
 				opinion[new_arrangement[y_index][x_index]] += 1
 			end
 		end
 
-		arrangement = new_arrangement
+		self.opinion = opinion
+		self.arrangement = new_arrangement
 	end
 
 	private 

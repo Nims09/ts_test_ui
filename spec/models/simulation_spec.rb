@@ -105,9 +105,28 @@ describe "build_arrangement" do
 
 	context "returns a verdict" do 
 
+		before(:each) do
+			@simulation.generate_arrangement			
+		end
+
 		it "returns a verdict within the key range" do 
-			@simulation.generate_arrangement
 			expect([:hard, :soft, :push].include?(@simulation.verdict)).to be true
 		end
+
+		it "updates the verdict after a next call" do
+			@simulation.next
+			
+			counts = Hash[ Simulation.keys.map { |key| [key, 0] } ]
+
+			@simulation.state.each do |row|
+				row.each do |item|
+					counts[item] += 1
+				end
+			end
+
+			counts.each do |count, value|
+				expect(value).to eq @simulation.opinion[count]
+			end
+		end		
 	end
 end 
