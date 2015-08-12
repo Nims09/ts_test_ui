@@ -34,11 +34,10 @@ class SimulationsController < ApplicationController
 		@simulation = Simulation.find(params[:id])
 		@simulation.next
 
-		@simulation.save
+		puts "ssssssssssssrrrr #{@simulation.dirty?}"
 
-		respond_to do |format|
-			format.js
-			format.html { redirect_to simulations_url }
+		if (@simulation.save && @simulation.dirty?)
+			render :partial => 'show', :object => @simulation
 		end
 	end
 	

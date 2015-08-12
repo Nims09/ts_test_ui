@@ -1,3 +1,9 @@
+var callUpdate
+
+setTimeout( function() {
+	callUpdate("<%= @simulation.id %>")
+}, 5000);
+
 callUpdate = function(id) {
 	if (id) {
 		console.log("tic")
@@ -9,12 +15,4 @@ callUpdate = function(id) {
 		console.log("Update error, no id passed.")
 	}
 	$('#sim_div').html("<%= j (render @simulation) %>");
-
-	setTimeout( function() {
-		callUpdate(id)
-	}, 5000);
 };
-
-setTimeout( function() {
-	callUpdate("<%= @simulation.id %>")
-}, 5000);

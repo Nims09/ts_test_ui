@@ -1,9 +1,7 @@
 <div id="sim_div">
   <h1><%= @simulation.identifier %></h1>
-  <h4 class="offset-col-sm-1">Dimensions: <%= @simulation.x_size %>x<%= @simulation.y_size %></h4>
-  <h4 class="offset-col-sm-1">Verdict: <%= @simulation.verdict %></h4>
-  <!-- REMOVE -->
- <h1> <%= @simulation.dirty? %></h1>
+  <h4> <small>Dimensions:</small> <%= @simulation.x_size %>x<%= @simulation.y_size %></h4>
+  <h4> <small>Verdict:</small> <%= @simulation.verdict %></h4>
 
   <table class="table table-bordered">
     <thead>
