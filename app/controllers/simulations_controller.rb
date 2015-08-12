@@ -27,12 +27,7 @@ class SimulationsController < ApplicationController
 	end
 
 	def show
-		@simulation = Simulation.find(params[:id])
-		
-		respond_to do |format|
-			format.js { render "show" }
-			format.html 
-		end		
+		@simulation = Simulation.find(params[:id])	
 	end
 
 	def update
