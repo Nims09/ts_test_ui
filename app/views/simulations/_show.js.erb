@@ -6,7 +6,6 @@ setTimeout( function() {
 
 callUpdate = function(id) {
 	if (id) {
-		console.log("tic")
 		$.ajax({
 			type: "PUT",
 			url: "/simulations/" + id
