@@ -28,11 +28,14 @@ class SimulationsController < ApplicationController
 
 	def show
 		@simulation = Simulation.find(params[:id])
+		
+		respond_to do |format|
+			format.js { render "show" }
+			format.html 
+		end		
 	end
 
 	def update
-		# This can be used for updating the next state transition.
-		# This action should be asynchronous
 		@simulation = Simulation.find(params[:id])
 		@simulation.next
 
@@ -42,7 +45,6 @@ class SimulationsController < ApplicationController
 			format.js
 			format.html { redirect_to simulations_url }
 		end
-
 	end
 	
 	def destroy

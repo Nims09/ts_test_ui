@@ -1,7 +1,21 @@
+<!-- Loads Coffeescript -->
 
-<!-- THIS MSUT BE AUTOMATIC  -->
+
+
+
+<!-- This must happen at regular intervals  -->
 <td><%= link_to edit_simulation_path(@simulation), @simulation, method: :put, id: @simulation.id, data: { remote: true }, :class => "btn btn-default btn-xs" %></td>
+
+<!-- <h1><a href="#" id="run" data-params="#{@simulation.id}"></a></h1>
+ -->
+
+
+<script type="text/javascript">
+	<%= render 'show.js.erb' %>
+</script>
+
 
 <%= render 'simulation' %>
 
 <%= link_to 'Back', simulations_path %>
+

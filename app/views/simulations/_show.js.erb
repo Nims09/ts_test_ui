@@ -1,0 +1,23 @@
+console.log("trace");
+console.log("<%= @simulation.id %>");
+
+callUpdate = function(id) {
+	console.log(id);
+	if (id) {
+		$.ajax({
+			type: "PUT",
+			url: "/simulations/" + id
+		});
+	} else {
+		console.log("Update error.")
+	}
+	$('#sim_div').html("<%= j (render @simulation) %>");
+
+	setTimeout( function() {
+		callUpdate(id)
+	}, 5000);
+};
+
+setTimeout( function() {
+	callUpdate("<%= @simulation.id %>")
+}, 5000);

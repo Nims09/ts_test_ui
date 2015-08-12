@@ -86,4 +86,8 @@ describe SimulationsController, :type => :controller do
 			expect { delete :destroy, :id => @simulation.id }.to change(Simulation, :count).by(-1)
 		end
 	end
+
+	describe "PUT #update" do 
+		# TODO: Fill me in
+	end
 end

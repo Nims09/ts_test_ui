@@ -1,13 +1,7 @@
 <div id="sim_div">
   <h1><%= @simulation.identifier %></h1>
-  <h4>Dimensions: <%= @simulation.x_size %>x<%= @simulation.y_size %></h4>
-  <h4>Verdict: <%= @simulation.verdict %></h4>
-
-  <ul>
-    <li> This should display the seating arrangement of the current simulation </li>
-    <li> This should dispaly the verdict of the current state of the simulation </li>
-    <li> It should automatically and asynchronously update itself to the next state at a regular interval.  </li>
-  </ul>
+  <h4 class="offset-col-sm-1">Dimensions: <%= @simulation.x_size %>x<%= @simulation.y_size %></h4>
+  <h4 class="offset-col-sm-1">Verdict: <%= @simulation.verdict %></h4>
 
   <table class="table table-bordered">
     <thead>
