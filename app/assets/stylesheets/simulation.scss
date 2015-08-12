@@ -1,0 +1,22 @@
+@-webkit-keyframes dirty {
+  from { background-color: grey; }
+  to { background-color: inherit; }
+}
+@-moz-keyframes dirty {
+  from { background-color: grey; }
+  to { background-color: inherit; }
+}
+@-o-keyframes dirty {
+  from { background-color: grey; }
+  to { background-color: inherit; }
+}
+@keyframes dirty {
+  from { background-color: grey; }
+  to { background-color: inherit; }
+}
+.dirty {
+  -webkit-animation: dirty 1s 1s; /* Safari 4+ */
+  -moz-animation:    dirty 1s 1s; /* Fx 5+ */
+  -o-animation:      dirty 1s 1s; /* Opera 12+ */
+  animation:         dirty 1s 1s; /* IE 10+ */
+}

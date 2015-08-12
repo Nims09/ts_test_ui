@@ -1,11 +1,12 @@
 callUpdate = function(id) {
 	if (id) {
+		console.log("tic")
 		$.ajax({
 			type: "PUT",
 			url: "/simulations/" + id
 		});
 	} else {
-		console.log("Update error.")
+		console.log("Update error, no id passed.")
 	}
 	$('#sim_div').html("<%= j (render @simulation) %>");
 

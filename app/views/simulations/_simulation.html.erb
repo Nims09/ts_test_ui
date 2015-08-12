@@ -2,6 +2,8 @@
   <h1><%= @simulation.identifier %></h1>
   <h4 class="offset-col-sm-1">Dimensions: <%= @simulation.x_size %>x<%= @simulation.y_size %></h4>
   <h4 class="offset-col-sm-1">Verdict: <%= @simulation.verdict %></h4>
+  <!-- REMOVE -->
+ <h1> <%= @simulation.dirty? %></h1>
 
   <table class="table table-bordered">
     <thead>
@@ -10,10 +12,10 @@
     </thead>
 
     <tbody>
-      <% @simulation.state.each do |row| %>
+      <% @simulation.state.each_with_index do |row, y_index| %>
         <tr>
-  	    <% row.each do |current| %>        
-          	<td class="text-center"><%= current %></td>        
+  	    <% row.each_with_index do |current, x_index| %>        
+          	<td class="text-center <%= 'dirty' if @simulation.dirty_points.include?([x_index,y_index]) %>"><%= current %></td>        
           <% end%>
         </tr>
       <% end %>

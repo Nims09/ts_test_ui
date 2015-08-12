@@ -36,12 +36,12 @@ describe Simulation do
 			expect(FactoryGirl.build(:simulation, identifier: nil)).not_to be_valid
 		end
 
-		it "is invalid with a x_size less than zero" do 
-			expect(FactoryGirl.build(:simulation, x_size: -1)).not_to be_valid
+		it "is invalid with a x_size less than one" do 
+			expect(FactoryGirl.build(:simulation, x_size: 0)).not_to be_valid
 		end
 	
-		it "is invalid with a x_size less than zero" do 
-			expect(FactoryGirl.build(:simulation, y_size: -1)).not_to be_valid
+		it "is invalid with a y_size less than one" do 
+			expect(FactoryGirl.build(:simulation, y_size: 0)).not_to be_valid
 		end
 	end
 end 
@@ -79,10 +79,6 @@ describe "build_arrangement" do
 	end
 
 	context "simulation.opinions" do 
-
-		before(:each) do
-			@simulation.generate_arrangement
-		end
 
 		it "fills opinions hash" do
 			expect(@simulation.opinion.nil?).to be false
@@ -128,5 +124,26 @@ describe "build_arrangement" do
 				expect(value).to eq @simulation.opinion[count]
 			end
 		end		
+	end
+
+	context "dirty_points" do
+
+		before(:each) do 
+			@simulation.generate_arrangement
+		end
+
+		it "should have nil dirty points before next call" do
+			expect(@simulation.dirty?).to eq false
+		end
+
+		it "should return an array if not initialized" do 
+			expect(@simulation.dirty_points).to eq []
+		end
+
+		it "should load dirty_points on next call" do
+			@simulation.next
+
+			expect(@simulation.dirty_points).not_to eq []
+		end
 	end
 end 

@@ -25,8 +25,12 @@ class Simulation < ActiveRecord::Base
 		[:soft, :hard, :none]
 	end 
 
-	def rand_opinion
-		Simulation.keys[rand(0..2)]
+	def dirty?
+		dirty_points.any? 
+	end	
+
+	def dirty_points
+		@dirty_points ||= Array.new
 	end
 
 	def generate_arrangement
@@ -65,7 +69,11 @@ class Simulation < ActiveRecord::Base
 
 		self.arrangement.each_with_index do |array, y_index|
 			array.each_with_index do |opinion_current, x_index|
-				new_arrangement[y_index][x_index] = update_opinion_for x_index, y_index
+				opinion_next = update_opinion_for x_index, y_index
+				if opinion_next != opinion_current
+					@dirty_points = dirty_points.push [x_index, y_index]
+				end
+				new_arrangement[y_index][x_index] = opinion_next
 				opinion[new_arrangement[y_index][x_index]] += 1
 			end
 		end
@@ -75,6 +83,10 @@ class Simulation < ActiveRecord::Base
 	end
 
 	private 
+
+	def rand_opinion
+		Simulation.keys[rand(0..2)]
+	end
 
 	def in_array_range?(x, y)
 		((x >= 0) and (y >= 0) and (x < arrangement[0].size) and (y < arrangement.size))
