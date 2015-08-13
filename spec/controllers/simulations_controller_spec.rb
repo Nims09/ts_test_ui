@@ -88,6 +88,27 @@ describe SimulationsController, :type => :controller do
 	end
 
 	describe "PUT #update" do 
-		# TODO: Fill me in
+		
+		it "should call simulation#next" do
+			expect_any_instance_of(Simulation).to receive(:next)
+
+			put :update, :id => @simulation.id, :format => 'js'
+		end
+
+		it "should render a partial when the record is dirty" do 
+			allow_any_instance_of(Simulation).to receive(:dirty?).and_return(true)
+
+			put :update, :id => @simulation.id, :format => 'js'
+
+			expect(response).to render_template( :partial => '_show' )
+		end
+
+		it "should not render a partial if the record is not dirty" do 
+			allow_any_instance_of(Simulation).to receive(:dirty?).and_return(false)
+
+			put :update, :id => @simulation.id, :format => 'js'
+
+			expect(response).not_to render_template( :partial => '_show' )
+		end
 	end
 end

@@ -20,7 +20,6 @@ class SimulationsController < ApplicationController
 		if @simulation.save
 			redirect_to @simulation
 		else
-			# TODO: This needs a correct response
 			setup_simulations
 			render :index
 		end
@@ -33,8 +32,6 @@ class SimulationsController < ApplicationController
 	def update
 		@simulation = Simulation.find(params[:id])
 		@simulation.next
-
-		puts "ssssssssssssrrrr #{@simulation.dirty?}"
 
 		if (@simulation.save && @simulation.dirty?)
 			render :partial => 'show', :object => @simulation
