@@ -16,6 +16,11 @@
 
 - You can now visit the page, by default located at: http://localhost:3000/
 
+## Notes 
+
+- I would in future make the opinions into two hash columns `hard` and `soft` so that they would be queryable. 
+- The Asynchronus polling on the Simulation#show, continues only while the state is actually changing, once it has settled, update calls stop being made.
+
 ## Environment Requirements
 
 The app must run on:
