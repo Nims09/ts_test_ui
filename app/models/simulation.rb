@@ -89,7 +89,7 @@ class Simulation < ActiveRecord::Base
 	end
 
 	def in_array_range?(x, y)
-		((x >= 0) and (y >= 0) and (x < arrangement[0].size) and (y < arrangement.size))
+		((x >= 0) and (y >= 0) and (x < self.arrangement[0].size) and (y < self.arrangement.size))
 	end
 
 	def update_opinion_for(x, y)
@@ -98,17 +98,17 @@ class Simulation < ActiveRecord::Base
 		for y_pos in (y-1)..(y+1)
 			for x_pos in (x-1)..(x+1)
 				if in_array_range? x_pos, y_pos and not(x == x_pos and y == y_pos)
-					local_opinions[arrangement[y_pos][x_pos]] += 1
+					local_opinions[self.arrangement[y_pos][x_pos]] += 1
 				end
 			end
 		end
 
-		opinion_current = arrangement[y][x]
+		opinion_current = self.arrangement[y][x]
 		opinionated_neighbours_count = local_opinions[:hard] + local_opinions[:soft]
 
 		if (opinion_current != :none) and (opinionated_neighbours_count < 2 or opinionated_neighbours_count > 3)
 			opinion_current = :none    
-		elsif opinion == :none and opinionated_neighbours_count == 3
+		elsif opinion_current == :none and opinionated_neighbours_count == 3
 			if local_opinions[:hard] > local_opinions[:soft]
 				opinion_current = :hard
 			elsif local_opinions[:soft] > local_opinions[:hard]
