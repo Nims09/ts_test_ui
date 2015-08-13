@@ -1,5 +1,21 @@
 # Clio Hiring Project Part 2
 
+## Setup Instructions
+
+- Clone the directory
+  `git clone https://github.com/Nims09/ts_test_ui && cd ts_test_ui`
+
+- Run a bundle install
+  `bundle install`
+
+- Load the schema
+  `rake db:schema:load`
+
+- Run the server
+  `rails server`
+
+- You can now visit the page, by default located at: http://localhost:3000/
+
 ## Environment Requirements
 
 The app must run on:
