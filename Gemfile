@@ -42,7 +42,7 @@ end
 group :development, :test do
   gem 'sqlite3', '1.3.10'
   gem 'rspec-rails', '~> 3.0'
-  gem 'factory_girl_rails'  
+  gem 'factory_girl_rails'
 end
 
 # Devise: https://github.com/plataformatec/devise
