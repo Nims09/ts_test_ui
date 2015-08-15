@@ -3,16 +3,30 @@
 ## Setup Instructions
 
 - Clone the directory
-  `git clone https://github.com/Nims09/ts_test_ui && cd ts_test_ui`
+  ```
+  git clone https://github.com/Nims09/ts_test_ui && cd ts_test_ui
+  ```
 
 - Run a bundle install
-  `bundle install`
+  ```
+  bundle install
+  ```
 
-- Load the schema
-  `rake db:schema:load`
+- Run the migrations
+  ```
+  rake db:migrate
+  ```
 
+
+- Setup your database
+  ```
+  rake db:setup ENV="test"
+  ```
+  
 - Run the server
-  `rails server`
+  ```
+  rails server
+  ```
 
 - You can now visit the page, by default located at: http://localhost:3000/
 
